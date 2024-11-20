@@ -1,15 +1,16 @@
-const nodemailer=  require('nodemailer')
+const nodemailer = require('nodemailer')
 const dotenv = require('dotenv');
+dotenv.config();
 
+// Sending email with own domain by mailtrap
 const sendEmailService = async (email) => {
-
     let transporter = nodemailer.createTransport({
-        host: 'live.smtp.mailtrap.io',
+        host: 'bulk.smtp.mailtrap.io',
         port: 587,
-        secure: false, 
+        secure: false,
         auth: {
-            user: process.env.APP_MAIL_USER,
-            pass: '',
+            user: 'api',
+            pass: process.env.APP_MAIL_TOKEN,
         }
     });
 
@@ -24,4 +25,31 @@ const sendEmailService = async (email) => {
     return mailSending;
 }
 
-export default sendEmailService
+const sendEmailController = async (req, res) => {
+    try {
+        const { email } = req.body
+        if (email) {
+            const response = await sendEmailService(process.env.APP_MAIL_USER);
+            return res.json(response)
+        }
+
+        return res.json({
+            status: 'error',
+            message: 'Something is wrong'
+        })
+
+
+    } catch (error) {
+        console.log(error)
+        return res.json({
+            status: 'err'
+        })
+    }
+}
+
+// export default sendEmailService
+
+module.exports = [{
+    sendEmailService,
+    sendEmailController
+}]
