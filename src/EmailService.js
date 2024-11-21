@@ -1,9 +1,10 @@
 const nodemailer = require('nodemailer')
 const dotenv = require('dotenv');
+const { status } = require('express/lib/response');
 dotenv.config();
 
 // Sending email with own domain by mailtrap
-const sendEmailService = async (email) => {
+const sendEmailService = async (info) => {
     let transporter = nodemailer.createTransport({
         host: 'live.smtp.mailtrap.io',
         port: 587,
@@ -14,12 +15,25 @@ const sendEmailService = async (email) => {
         }
     });
 
-    let mailSending = await transporter.sendMail({
+    let mailSendingCEO = await transporter.sendMail({
         from: 'hello@demomailtrap.com',
-        to: email,
+        to: info.email,
         subject: 'Sending Email using Node.js',
         text: 'That was easy!',
-        html: "<b>123</b>"
+        html: `
+            <h1>Ông/bà <b>${info.name}</b> đang cân nhắc đầu tư số tiền ${info.investment}</h1> vào công ty
+        `
+    });
+
+    let mailSending = await transporter.sendMail({
+        from: 'hello@demomailtrap.com',
+        to: info.email,
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!',
+        html: `
+            <h1>Chân thành cảm ơn ông/bà <b>${info.name}</b> vì đã cân nhắc đầu tư số tiền ${info.investment}</h1>
+            
+        `
     });
 
     return mailSending;
@@ -27,21 +41,18 @@ const sendEmailService = async (email) => {
 
 const sendEmailController = async (req, res) => {
     try {
-        // const { email } = req.body
-        // console.log(email)
+        const info = req.body; 
+        console.log(req.body);
 
-        // if (email) {
-        //     const response = await sendEmailService(process.env.APP_MAIL_USER);
-        //     return res.json(response)
-        // }
+        if(info) {
+            const response = await sendEmailService(info);
+            return res.json(response);
+        }
 
-        const response = await sendEmailService(process.env.APP_MAIL_USER);
-            return res.json(response)
-
-        // return res.json({
-        //     status: 'error',
-        //     message: 'Something is wrong'
-        // })
+        return res.json({
+            status: 'err',
+            message: 'Something is wrong'
+        })
 
 
     } catch (error) {
