@@ -6,18 +6,20 @@ dotenv.config();
 // Sending email with own domain by mailtrap
 const sendEmailService = async (info) => {
     let transporter = nodemailer.createTransport({
-        host: 'live.smtp.mailtrap.io',
+        // host: 'live.smtp.mailtrap.io',
+        host: 'smtp.gmail.com',
         port: 587,
         secure: false,
         auth: {
-            user: 'api',
-            pass: process.env.APP_MAIL_TOKEN,
+            user: process.env.APP_MAIL_USER,
+            pass: process.env.APP_PASSWORD,
         }
     });
 
     let mailSendingCEO = await transporter.sendMail({
         from: 'hello@demomailtrap.com',
-        to: info.email,
+        // to: info.email,
+        to: 'tieutamdev@gmail.com',
         subject: 'Sending Email using Node.js',
         text: 'That was easy!',
         html: `
