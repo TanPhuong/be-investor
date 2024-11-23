@@ -20,17 +20,17 @@ const sendEmailService = async (info) => {
         from: 'hello@demomailtrap.com',
         to: info.email,
         // to: 'tieutamdev@gmail.com',
-        subject: 'Nhà đầu tư cần được tư vấn!',
-        text: 'Nhà đầu tư cần được tư vấn!',
+        subject: 'Nhà đầu tư đã đăng ký tư vấn!',
+        text: 'Nhà đầu tư đã đăng ký tư vấn!',
         html: `
-            <p>Hiện tại, quý ông/bà <b>${info.name}</b> đang cân nhắc đầu tư số tiền ${info.investment.toLocaleString()} vào công ty</p>
+            <h3>Hiện tại, quý ông/bà <b>${info.name}</b> đang cân nhắc đầu tư số tiền <b>${info.investment.toLocaleString()} đồng</b> vào công ty</h3>
             <p>Dưới đây là những thông tin đã cung cấp</p>
             <ul>
-                <li>Họ và tên: ${info.name}</li>
+                <li>Họ và tên:  <b>${info.name}</b></li>
                 <li>Số điện thoại:  ${info.phone}</li>
                 <li>Email:  ${info.email}</li>
                 <li>Thành phố:  ${info.provinces}</li>
-                <li>Số tiền dự định đầu tư:  ${info.investment.toLocaleString()} đồng</li>
+                <li>Số tiền dự định đầu tư:  <b>${info.investment.toLocaleString()} đồng</b></li>
             </ul>
             <p>Vui lòng liên hệ với khách hàng trong thời gian sớm nhất để thảo luận và tư vấn chi tiết</p>
             <p>Cảm ơn anh/chị đã quan tâm</p>
@@ -50,15 +50,13 @@ const sendEmailService = async (info) => {
             <h3>Xin được gửi đến Quý nhà đầu tư lời chào trân trọng, lời chúc sức khoẻ và thành công!</h3>
             <h4>Chân thành cảm ơn ông/bà <b>${info.name}</b> vì đã quan tâm đến việc đầu tư vào công ty Vietnam Tourist. Chúng tôi nhận đã nhận được thông tin đăng ký của quý ông/bà và sẽ sớm liên hệ để tư vấn chi tiết.</h4>
             <p>Dưới đây là những thông tin đã cung cấp</p>
-
             <ul>
-                <li>Họ và tên: ${info.name}</li>
+                <li>Họ và tên:  <b>${info.name}</b></li>
                 <li>Số điện thoại:  ${info.phone}</li>
                 <li>Email:  ${info.email}</li>
                 <li>Thành phố:  ${info.provinces}</li>
-                <li>Số tiền dự định đầu tư:  ${info.investment.toLocaleString()} đồng</li>
+                <li>Số tiền dự định đầu tư:  <b>${info.investment.toLocaleString()} đồng</b></li>
             </ul>
-
             <p>Bên phía Công ty chúng tôi sẽ liên hệ sớm nhất có thể để hỗ trợ tư vấn.</p>
             <p>Cảm ơn quý ông/bà đã quan tâm</p>
             <p>Trân trọng,</p>
