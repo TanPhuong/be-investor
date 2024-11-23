@@ -23,7 +23,7 @@ const sendEmailService = async (info) => {
         subject: 'Nhà đầu tư cần được tư vấn!',
         text: 'Nhà đầu tư cần được tư vấn!',
         html: `
-            <p>Hiện tại, quý ông/bà <b>${info.name}</b> đang cân nhắc đầu tư số tiền ${info.investment} vào công ty</p>
+            <p>Hiện tại, quý ông/bà <b>${info.name}</b> đang cân nhắc đầu tư số tiền ${info.investment.toLocaleString()} vào công ty</p>
             <p>Dưới đây là những thông tin đã cung cấp</p>
             <ul>
                 <li>Họ và tên: ${info.name}</li>
@@ -48,7 +48,7 @@ const sendEmailService = async (info) => {
         text: 'Kính gửi: Quý nhà đầu tư!',
         html: `
             <h3>Xin được gửi đến Quý nhà đầu tư lời chào trân trọng, lời chúc sức khoẻ và thành công!</h3>
-            <4>Chân thành cảm ơn ông/bà <b>${info.name}</b> vì đã quan tâm đến việc đầu tư vào công ty Vietnam Tourist. Chúng tôi nhận đã nhận được thông tin đăng ký của quý ông/bà và sẽ sớm liên hệ để tư vấn chi tiết.</4>
+            <h4>Chân thành cảm ơn ông/bà <b>${info.name}</b> vì đã quan tâm đến việc đầu tư vào công ty Vietnam Tourist. Chúng tôi nhận đã nhận được thông tin đăng ký của quý ông/bà và sẽ sớm liên hệ để tư vấn chi tiết.</h4>
             <p>Dưới đây là những thông tin đã cung cấp</p>
 
             <ul>
