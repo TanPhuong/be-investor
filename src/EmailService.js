@@ -18,35 +18,66 @@ const sendEmailService = async (info) => {
 
     let mailSendingCEO = await transporter.sendMail({
         from: 'hello@demomailtrap.com',
-        // to: info.email,
-        to: 'tieutamdev@gmail.com',
-        subject: 'Sending Email using Node.js',
-        text: 'That was easy!',
+        to: info.email,
+        // to: 'tieutamdev@gmail.com',
+        subject: 'Nhà đầu tư cần tư vấn!',
+        text: 'Nhà đầu tư cần tư vấn!',
         html: `
-            <h1>Ông/bà <b>${info.name}</b> đang cân nhắc đầu tư số tiền ${info.investment}</h1> vào công ty
+            <p>Hiện tại, quý ông/bà <b>${info.name}</b> đang cân nhắc đầu tư số tiền ${info.investment} vào công ty</p>
+            <p>Dưới đây là những thông tin đã cung cấp</p>
+            <ul>
+                <li>Họ và tên: ${info.name}</li>
+                <li>Số điện thoại:  ${info.phone}</li>
+                <li>Email:  ${info.email}</li>
+                <li>Thành phố:  ${info.provinces}</li>
+                <li>Số tiền dự định đầu tư:  ${info.investment}</li>
+            </ul>
+            <p>Vui lòng liên hệ với khách hàng trong thời gian sớm nhất để thảo luận và tư vấn chi tiết</p>
+            <p>Cảm ơn anh/chị đã quan tâm</p>
+            <p>Trân trọng,</p>
+            <p>Công ty Cổ phần Thương mại và Dịch vụ Du Lịch Vietnam Tourist</p>
         `
     });
+
+
 
     let mailSending = await transporter.sendMail({
         from: 'hello@demomailtrap.com',
         to: info.email,
-        subject: 'Sending Email using Node.js',
-        text: 'That was easy!',
+        subject: 'Kính gửi: Quý nhà đầu tư!',
+        text: 'Kính gửi: Quý nhà đầu tư!',
         html: `
-            <h1>Chân thành cảm ơn ông/bà <b>${info.name}</b> vì đã cân nhắc đầu tư số tiền ${info.investment}</h1>
+            <h1>Xin được gửi đến Quý nhà đầu tư lời chào trân trọng, lời chúc sức khoẻ và thành công!</h1>
+            <p>Chân thành cảm ơn ông/bà <b>${info.name}</b> vì đã quan tâm đến việc đầu tư vào công ty Vietnam Tourist. Chúng tôi nhận đã nhận được thông tin đăng ký của quý ông/bà và sẽ sớm liên hệ để tư vấn chi tiết.</p>
+            <p>Dưới đây là những thông tin đã cung cấp</p>
+
+            <ul>
+                <li>Họ và tên: ${info.name}</li>
+                <li>Số điện thoại:  ${info.phone}</li>
+                <li>Email:  ${info.email}</li>
+                <li>Thành phố:  ${info.provinces}</li>
+                <li>Số tiền dự định đầu tư:  ${info.investment}</li>
+            </ul>
+
+            <p>Bên phía Công ty chúng tôi sẽ liên hệ sớm nhất có thể để hỗ trợ tư vấn.</p>
+            <p>Cảm ơn quý ông/bà đã quan tâm</p>
+            <p>Trân trọng,</p>
+            <p>Công ty Cổ phần Thương mại và Dịch vụ Du Lịch Vietnam Tourist</p>
             
         `
     });
+
+    console.log(mailSendingCEO)
 
     return mailSending;
 }
 
 const sendEmailController = async (req, res) => {
     try {
-        const info = req.body; 
+        const info = req.body;
         console.log(req.body);
 
-        if(info) {
+        if (info) {
             const response = await sendEmailService(info);
             return res.json(response);
         }
