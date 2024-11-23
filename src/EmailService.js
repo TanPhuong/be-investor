@@ -20,8 +20,8 @@ const sendEmailService = async (info) => {
         from: 'hello@demomailtrap.com',
         to: info.email,
         // to: 'tieutamdev@gmail.com',
-        subject: 'Nhà đầu tư cần tư vấn!',
-        text: 'Nhà đầu tư cần tư vấn!',
+        subject: 'Nhà đầu tư cần được tư vấn!',
+        text: 'Nhà đầu tư cần được tư vấn!',
         html: `
             <p>Hiện tại, quý ông/bà <b>${info.name}</b> đang cân nhắc đầu tư số tiền ${info.investment} vào công ty</p>
             <p>Dưới đây là những thông tin đã cung cấp</p>
@@ -30,7 +30,7 @@ const sendEmailService = async (info) => {
                 <li>Số điện thoại:  ${info.phone}</li>
                 <li>Email:  ${info.email}</li>
                 <li>Thành phố:  ${info.provinces}</li>
-                <li>Số tiền dự định đầu tư:  ${info.investment}</li>
+                <li>Số tiền dự định đầu tư:  ${info.investment.toLocaleString()} đồng</li>
             </ul>
             <p>Vui lòng liên hệ với khách hàng trong thời gian sớm nhất để thảo luận và tư vấn chi tiết</p>
             <p>Cảm ơn anh/chị đã quan tâm</p>
@@ -47,8 +47,8 @@ const sendEmailService = async (info) => {
         subject: 'Kính gửi: Quý nhà đầu tư!',
         text: 'Kính gửi: Quý nhà đầu tư!',
         html: `
-            <h1>Xin được gửi đến Quý nhà đầu tư lời chào trân trọng, lời chúc sức khoẻ và thành công!</h1>
-            <p>Chân thành cảm ơn ông/bà <b>${info.name}</b> vì đã quan tâm đến việc đầu tư vào công ty Vietnam Tourist. Chúng tôi nhận đã nhận được thông tin đăng ký của quý ông/bà và sẽ sớm liên hệ để tư vấn chi tiết.</p>
+            <h3>Xin được gửi đến Quý nhà đầu tư lời chào trân trọng, lời chúc sức khoẻ và thành công!</h3>
+            <4>Chân thành cảm ơn ông/bà <b>${info.name}</b> vì đã quan tâm đến việc đầu tư vào công ty Vietnam Tourist. Chúng tôi nhận đã nhận được thông tin đăng ký của quý ông/bà và sẽ sớm liên hệ để tư vấn chi tiết.</4>
             <p>Dưới đây là những thông tin đã cung cấp</p>
 
             <ul>
@@ -56,7 +56,7 @@ const sendEmailService = async (info) => {
                 <li>Số điện thoại:  ${info.phone}</li>
                 <li>Email:  ${info.email}</li>
                 <li>Thành phố:  ${info.provinces}</li>
-                <li>Số tiền dự định đầu tư:  ${info.investment}</li>
+                <li>Số tiền dự định đầu tư:  ${info.investment.toLocaleString()} đồng</li>
             </ul>
 
             <p>Bên phía Công ty chúng tôi sẽ liên hệ sớm nhất có thể để hỗ trợ tư vấn.</p>
