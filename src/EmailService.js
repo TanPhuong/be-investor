@@ -16,9 +16,12 @@ const sendEmailService = async (info) => {
         }
     });
 
+    // Multiple recipients
     let mailSendingCEO = await transporter.sendMail({
         from: 'hello@demomailtrap.com',
-        to: info.email,
+        to: [
+            info.email,
+        ], 
         subject: 'Nhà đầu tư đã đăng ký tư vấn!',
         text: 'Nhà đầu tư đã đăng ký tư vấn!',
         html: `
@@ -37,7 +40,6 @@ const sendEmailService = async (info) => {
             <p>Công ty Cổ phần Thương mại và Dịch vụ Du Lịch Vietnam Tourist</p>
         `
     });
-
 
 
     let mailSending = await transporter.sendMail({
