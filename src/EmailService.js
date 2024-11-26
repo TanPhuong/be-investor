@@ -19,7 +19,6 @@ const sendEmailService = async (info) => {
     let mailSendingCEO = await transporter.sendMail({
         from: 'hello@demomailtrap.com',
         to: info.email,
-        // to: 'tieutamdev@gmail.com',
         subject: 'Nhà đầu tư đã đăng ký tư vấn!',
         text: 'Nhà đầu tư đã đăng ký tư vấn!',
         html: `
