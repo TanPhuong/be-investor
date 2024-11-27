@@ -6,7 +6,6 @@ dotenv.config();
 // Sending email with own domain by mailtrap
 const sendEmailService = async (info) => {
     let transporter = nodemailer.createTransport({
-        // host: 'live.smtp.mailtrap.io',
         host: 'smtp.gmail.com',
         port: 587,
         secure: false,
@@ -16,23 +15,20 @@ const sendEmailService = async (info) => {
         }
     });
 
-    // Multiple recipients
     let mailSendingCEO = await transporter.sendMail({
-        from: 'hello@demomailtrap.com',
-        to: [
-            info.email,
-        ], 
+        from: process.env.APP_MAIL_USER,
+        to: info.email,
         subject: 'Nhà đầu tư đã đăng ký tư vấn!',
         text: 'Nhà đầu tư đã đăng ký tư vấn!',
         html: `
-            <h3>Hiện tại, quý ông/bà <b>${info.name}</b> đang cân nhắc đầu tư số tiền <b>${info.investment.toLocaleString()} đồng</b> vào công ty</h3>
+            <h3>Hiện tại, quý ông/bà <b>${info.name}</b> đang cân nhắc đầu tư số tiền <b>${info.investment.toLocaleString()}</b> vào công ty</h3>
             <p>Dưới đây là những thông tin đã cung cấp</p>
             <ul>
                 <li>Họ và tên:  <b>${info.name}</b></li>
                 <li>Số điện thoại:  ${info.phone}</li>
                 <li>Email:  ${info.email}</li>
-                <li>Thành phố:  ${info.provinces}</li>
-                <li>Số tiền dự định đầu tư:  <b>${info.investment.toLocaleString()} đồng</b></li>
+                <li>Tỉnh/Thành phố:  ${info.provinces}</li>
+                <li>Số tiền dự định đầu tư:  <b>${info.investment.toLocaleString()}</b></li>
             </ul>
             <p>Vui lòng liên hệ với khách hàng trong thời gian sớm nhất để thảo luận và tư vấn chi tiết</p>
             <p>Cảm ơn anh/chị đã quan tâm</p>
@@ -43,7 +39,7 @@ const sendEmailService = async (info) => {
 
 
     let mailSending = await transporter.sendMail({
-        from: 'hello@demomailtrap.com',
+        from: process.env.APP_MAIL_USER,
         to: info.email,
         subject: 'Kính gửi: Quý nhà đầu tư!',
         text: 'Kính gửi: Quý nhà đầu tư!',
@@ -55,8 +51,8 @@ const sendEmailService = async (info) => {
                 <li>Họ và tên:  <b>${info.name}</b></li>
                 <li>Số điện thoại:  ${info.phone}</li>
                 <li>Email:  ${info.email}</li>
-                <li>Thành phố:  ${info.provinces}</li>
-                <li>Số tiền dự định đầu tư:  <b>${info.investment.toLocaleString()} đồng</b></li>
+                <li>Tỉnh/Thành phố:  ${info.provinces}</li>
+                <li>Số tiền dự định đầu tư:  <b>${info.investment.toLocaleString()}</b></li>
             </ul>
             <p>Bên phía Công ty chúng tôi sẽ liên hệ sớm nhất có thể để hỗ trợ tư vấn.</p>
             <p>Cảm ơn quý ông/bà đã quan tâm</p>
