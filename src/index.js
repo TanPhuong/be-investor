@@ -11,7 +11,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use('/', () => console.log('Welcome'))
+app.get('/', (req, res) => res.send('Welcome'))
 app.use('/api/email', router)
 
 app.listen(port, () => console.log('Connecting to port: ' + port))
